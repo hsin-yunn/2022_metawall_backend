@@ -6,6 +6,8 @@ const { isAuth } = require('../middlewares/auth');
 
 //index
 router.get('/posts', isAuth, handleErrorAsync(postController.index));
+//auth index
+router.get('/auth/posts', isAuth, handleErrorAsync(postController.authIndex));
 //store
 router.post('/posts', isAuth, handleErrorAsync(postController.store));
 //show
@@ -16,5 +18,13 @@ router.delete('/posts', isAuth, handleErrorAsync(postController.deleteAll));
 router.delete('/posts/:id', isAuth, handleErrorAsync(postController.deleteOne));
 //update
 router.patch('/posts/:id', isAuth, handleErrorAsync(postController.update));
+//like
+router.post('/posts/:id/like', isAuth, handleErrorAsync(postController.like));
+//unlike
+router.delete(
+  '/posts/:id/unlike',
+  isAuth,
+  handleErrorAsync(postController.unlike),
+);
 
 module.exports = router;
