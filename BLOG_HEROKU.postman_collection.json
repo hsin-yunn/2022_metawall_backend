@@ -21,8 +21,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/posts?search=&orderWay&orderBy",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts?search=&orderWay&orderBy",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -71,8 +71,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/posts",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -95,8 +95,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/posts",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -119,8 +119,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/posts/:id",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts/:id",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -159,8 +159,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/posts/:id",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts/:id",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -190,8 +190,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/posts/:id",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts/:id",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -221,8 +221,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/auth/posts?search=&orderWay&orderBy",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/auth/posts?search=&orderWay&orderBy",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -260,8 +260,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/posts/:id/like",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts/:id/like",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -292,8 +292,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/posts/:id/unlike",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts/:id/unlike",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -332,8 +332,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/signin",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/signin",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -359,8 +359,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/signup",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/signup",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -392,8 +392,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/auth/user",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/auth/user",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -417,8 +417,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/auth/user",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/auth/user",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -451,8 +451,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/auth/user/reset_password",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/auth/user/reset_password",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -477,8 +477,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/users/getLikeList",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/users/getLikeList",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -502,8 +502,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/users/getFollowList",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/users/getFollowList",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -527,8 +527,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/:id/follow",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/:id/follow",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -558,8 +558,8 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{baseUrl}}/:id/unfollow",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/:id/unfollow",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -604,8 +604,8 @@
 							]
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/upload/image",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/upload/image",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -643,8 +643,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/posts/:id/comment",
-							"protocol": "http",
+							"raw": "https://{{baseUrl}}/posts/:id/comment",
+							"protocol": "https",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -664,38 +664,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": []
-						}
-					]
-				},
-				"url": {
-					"raw": "http://127.0.0.1:3000/upload-file",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "3000",
-					"path": [
-						"upload-file"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
