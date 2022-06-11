@@ -48,6 +48,16 @@ exports.signup = async function (req, res, next) {
     //判斷 name至少需要兩個字
     return next(appErrorHandle(400, 'name length at least two words', next));
   }
+  const passwordRule = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])');
+  if (!passwordRule.test(password)) {
+    return next(
+      appErrorHandle(
+        400,
+        'passowrd should contain number, uppercase and lowercase letters ',
+        next,
+      ),
+    );
+  }
   const isExist = await User.findOne({ email: email });
   if (isExist) {
     return next(appErrorHandle(400, 'email is exist', next));
@@ -145,6 +155,16 @@ exports.updatePassword = async function (req, res, next) {
   if (!validator.isLength(password, { min: 8 })) {
     //判斷密碼長度
     return next(appErrorHandle(400, 'password length is not correct', next));
+  }
+  const passwordRule = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])');
+  if (!passwordRule.test(password)) {
+    return next(
+      appErrorHandle(
+        400,
+        'passowrd should contain number, uppercase and lowercase letters ',
+        next,
+      ),
+    );
   }
   const bcryptPassword = await bcrypt.hash(password, 12);
   const _id = req.user._id;
