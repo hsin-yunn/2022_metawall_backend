@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1a18e2c8-6504-4d1f-992f-bc90d54a190e",
+		"_postman_id": "8edddc59-a0c4-40ef-8001-14c236b43c78",
 		"name": "BLOG_HEROKU",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "10762245"
@@ -10,7 +10,7 @@
 			"name": "Post",
 			"item": [
 				{
-					"name": "Index",
+					"name": "Index 取得所有貼文",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -51,7 +51,7 @@
 					"response": []
 				},
 				{
-					"name": "Store",
+					"name": "Store 新增貼文",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -179,7 +179,7 @@
 					"response": []
 				},
 				{
-					"name": "Show",
+					"name": "Show 取得單一貼文",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -208,6 +208,109 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Auth Index 取得個人所有貼文列表：",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{baseUrl}}/auth/posts?search=&orderWay&orderBy",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "orderWay",
+									"value": null
+								},
+								{
+									"key": "orderBy",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like 新增一則貼文的讚",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{baseUrl}}/posts/:id/like",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike 取消一則貼文的讚",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{baseUrl}}/posts/:id/unlike",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"unlike"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -215,7 +318,7 @@
 			"name": "Auth",
 			"item": [
 				{
-					"name": "Signin",
+					"name": "Signin 登入會員",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -242,7 +345,7 @@
 					"response": []
 				},
 				{
-					"name": "Signup",
+					"name": "Signup 註冊會員",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -269,7 +372,7 @@
 					"response": []
 				},
 				{
-					"name": "Auth Update",
+					"name": "Auth Update 更新個人資料",
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -303,7 +406,7 @@
 					"response": []
 				},
 				{
-					"name": "Get User",
+					"name": "Get User 取得個人資料",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -328,7 +431,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Password",
+					"name": "Update Password 重設密碼",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -361,6 +464,118 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Like List 取得個人按讚列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{baseUrl}}/users/getLikeList",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"getLikeList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Follow List 取得個人追蹤列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{baseUrl}}/users/getFollowList",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"getFollowList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow 追蹤他人",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{baseUrl}}/:id/follow",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":id",
+								"follow"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unfollow 取消追蹤他人",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{baseUrl}}/:id/unfollow",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":id",
+								"unfollow"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -368,7 +583,7 @@
 			"name": "Upload",
 			"item": [
 				{
-					"name": "Upload Image",
+					"name": "Upload Image 上傳圖片",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -403,6 +618,84 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Store 新增一則貼文的留言",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\":\"嘿嘿嘿你好啊\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}/posts/:id/comment",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"comment"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/upload-file",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"upload-file"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
