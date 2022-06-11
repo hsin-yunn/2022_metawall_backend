@@ -20,5 +20,21 @@ router.post(
   isAuth,
   handleErrorAsync(userController.updatePassword),
 );
+//getLikeList 取得個人按讚貼文列表
+router.get(
+  '/users/getLikeList',
+  isAuth,
+  handleErrorAsync(userController.getLikeList),
+);
+//follow 追蹤他人
+router.post('/:id/follow', isAuth, handleErrorAsync(userController.follow));
+//unfollow 取消追蹤
+router.post('/:id/unfollow', isAuth, handleErrorAsync(userController.unfollow));
+//getFollowList 取得個人追蹤列表
+router.get(
+  '/users/getFollowList',
+  isAuth,
+  handleErrorAsync(userController.getFollowList),
+);
 
 module.exports = router;

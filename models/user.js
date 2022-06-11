@@ -35,6 +35,32 @@ const schema = new mongoose.Schema(
       type: String,
       enum: ['female', 'male'],
     },
+    followers: [
+      //追蹤自己的人
+      {
+        user: {
+          type: mongoose.Schema.ObjectId,
+          ref: 'User',
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+    following: [
+      //自己追蹤的人
+      {
+        user: {
+          type: mongoose.Schema.ObjectId,
+          ref: 'User',
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
   },
   {
     versionKey: false,

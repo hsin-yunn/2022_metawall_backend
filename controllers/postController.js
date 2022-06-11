@@ -130,7 +130,6 @@ exports.deleteOne = async function (req, res, next) {
   const _id = req.params.id;
   try {
     const post = await Post.findById(_id);
-    console.log(post, 'post');
     if (post.user !== req.user._id) {
       return next(appErrorHandle(400, 'not your post', next));
     }
@@ -192,11 +191,10 @@ exports.like = async function (req, res, next) {
   const _id = req.params.id;
   const isValid = mongoose.Types.ObjectId.isValid(_id);
   if (!_id || !isValid) {
-    next(appErrorHandle(400, 'id is required or invalid', next));
+    return next(appErrorHandle(400, 'id is required or invalid', next));
   }
   //check post is exist
   const post = await Post.findById(_id);
-  console.log(post, 'post');
   if (!post) {
     return next(appErrorHandle(400, 'data is not exist', next));
   }
@@ -215,11 +213,10 @@ exports.unlike = async function (req, res, next) {
   const _id = req.params.id;
   const isValid = mongoose.Types.ObjectId.isValid(_id);
   if (!_id || !isValid) {
-    next(appErrorHandle(400, 'id is required or invalid', next));
+    return next(appErrorHandle(400, 'id is required or invalid', next));
   }
   //check post is exist
   const post = await Post.findById(_id);
-  console.log(post, 'post');
   if (!post) {
     return next(appErrorHandle(400, 'data is not exist', next));
   }

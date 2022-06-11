@@ -3,6 +3,8 @@ const appErrorHandle = require('../service/appErrorHandle');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+const Post = require('../models/post');
+const mongoose = require('mongoose');
 
 function jwtGenerate(user) {
   //產生 jwt token
@@ -101,7 +103,6 @@ exports.getUser = async function (req, res, next) {
 
 //update user
 exports.updateUser = async function (req, res, next) {
-  console.log(123123);
   const { gender, avatar, name } = req.body;
   if (!name) {
     return next(appErrorHandle(400, 'name is required', next));
@@ -115,7 +116,6 @@ exports.updateUser = async function (req, res, next) {
   const user = await User.findByIdAndUpdate(_id, data, {
     new: true,
   });
-  console.log(user, 'user');
   res.status(200).json({
     data: user,
   });
@@ -149,5 +149,118 @@ exports.updatePassword = async function (req, res, next) {
   res.status(200).json({
     status: 'success',
     message: 'update success',
+  });
+};
+
+//getLikeList 取得個人按讚貼文列表
+exports.getLikeList = async function (req, res, next) {
+  const likeList = await Post.find({
+    likes: {
+      $in: [req.user._id],
+    },
+  }).populate({
+    path: 'user',
+    select: 'name _id',
+  });
+  res.status(200).json({
+    status: 'success',
+    data: likeList,
+  });
+};
+
+//follow 追蹤其他人
+exports.follow = async function (req, res, next) {
+  //判斷此使用者是否存在
+  const isValid = mongoose.Types.ObjectId.isValid(req.params.id);
+  if (!req.params.id || !isValid) {
+    return next(appErrorHandle(400, 'id is required or invalid', next));
+  }
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(appErrorHandle(400, 'user is not exist', next));
+  }
+  //判斷不能追蹤自己
+  if (req.params.id === req.user.id) {
+    return next(appError(401, 'can not follow yourself', next));
+  }
+  await User.updateOne(
+    {
+      _id: req.user.id,
+      'following.user': { $ne: req.params.id },
+    },
+    {
+      $addToSet: { following: { user: req.params.id } },
+    },
+  );
+  await User.updateOne(
+    {
+      _id: req.params.id,
+      'followers.user': { $ne: req.user.id },
+    },
+    {
+      $addToSet: { followers: { user: req.user.id } },
+    },
+  );
+  res.status(200).json({
+    status: 'success',
+    message: 'follow success',
+  });
+};
+
+//unfollow取消追蹤
+exports.unfollow = async function (req, res, next) {
+  //判斷此使用者是否存在
+  const isValid = mongoose.Types.ObjectId.isValid(req.params.id);
+  if (!req.params.id || !isValid) {
+    return next(appErrorHandle(400, 'id is required or invalid', next));
+  }
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(appErrorHandle(400, 'user is not exist', next));
+  }
+  //判斷不能取消追蹤自己
+  if (req.params.id === req.user.id) {
+    return next(appError(401, 'can not unfollow yourself', next));
+  }
+  await User.updateOne(
+    {
+      _id: req.user.id,
+    },
+    {
+      $pull: {
+        following: {
+          user: req.params.id,
+        },
+      },
+    },
+  );
+  await User.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      $pull: {
+        followers: {
+          user: req.user.id,
+        },
+      },
+    },
+  );
+  res.status(200).json({
+    status: 'success',
+    message: 'unfollow success',
+  });
+};
+
+//getFollowList取得自己的追蹤列表
+exports.getFollowList = async function (req, res, next) {
+  const followList = await User.find({
+    followers: {
+      $in: [req.user._id],
+    },
+  });
+  res.status(200).json({
+    status: 'success',
+    data: followList,
   });
 };

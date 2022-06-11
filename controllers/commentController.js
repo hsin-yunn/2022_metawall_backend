@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const Comment = require('../models/comment');
 const User = require('../models/user');
 const appErrorHandle = require('../service/appErrorHandle');
 const mongoose = require('mongoose');
@@ -10,8 +11,8 @@ exports.store = async function (req, res, next) {
   const postId = req.params.id;
   //check postId is correct
   const isValid = mongoose.Types.ObjectId.isValid(postId);
-  if (!postId || !isValid) {
-    next(appErrorHandle(400, 'id is required or invalid', next));
+  if (!isValid || !postId) {
+    return next(appErrorHandle(400, 'id is required or invalid', next));
   }
   //check post is exist
   const post = await Post.findById(postId);
@@ -22,6 +23,7 @@ exports.store = async function (req, res, next) {
   const data = req.body;
   //add auth to data's user
   data.user = req.user._id;
+  data.post = postId;
   const comment = await Comment.create(data);
   res.status(201).json({
     data: comment,

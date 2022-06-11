@@ -34,6 +34,7 @@ mongoose
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
 const uploadRouter = require('./routes/upload');
+const commentsRouter = require('./routes/comments');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(usersRouter);
 app.use(postsRouter);
 app.use(uploadRouter);
+app.use(commentsRouter);
 
 //404 not found
 app.use(function (req, res, next) {
