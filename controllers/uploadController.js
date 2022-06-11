@@ -8,9 +8,14 @@ exports.imgUpload = async function (req, res, next) {
     return next(appErrorHandle(400, 'files required', next));
   }
   //check image width
-  const dimensions = sizeOf(req.files[0].buffer);
-  if (dimensions.width !== dimensions.height) {
-    return next(appErrorHandle(400, 'image size is not 1:1', next));
+  const {
+    query: { type },
+  } = req;
+  if (type === 'avatar') {
+    const dimensions = sizeOf(req.files[0].buffer);
+    if (dimensions.width !== dimensions.height) {
+      return next(appErrorHandle(400, 'image size is not 1:1', next));
+    }
   }
   const client = new ImgurClient({
     clientId: process.env.IMGUR_CLIENT_ID,

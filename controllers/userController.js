@@ -44,6 +44,10 @@ exports.signup = async function (req, res, next) {
       appErrorHandle(400, 'password and passwordConfirm is not same', next),
     );
   }
+  if (name.trim().length < 2) {
+    //判斷 name至少需要兩個字
+    return next(appErrorHandle(400, 'name length at least two words', next));
+  }
   const isExist = await User.findOne({ email: email });
   if (isExist) {
     return next(appErrorHandle(400, 'email is exist', next));
@@ -104,8 +108,15 @@ exports.getUser = async function (req, res, next) {
 //update user
 exports.updateUser = async function (req, res, next) {
   const { gender, avatar, name } = req.body;
-  if (!name) {
+  if (!name || !name.trim().length) {
     return next(appErrorHandle(400, 'name is required', next));
+  }
+  if (name.trim().length < 2) {
+    //判斷 name至少需要兩個字
+    return next(appErrorHandle(400, 'name length at least two words', next));
+  }
+  if (!gender) {
+    return next(appErrorHandle(400, 'gender is required', next));
   }
   const data = {
     gender,
