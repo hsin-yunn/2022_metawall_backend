@@ -612,6 +612,14 @@
 							"path": [
 								"upload",
 								"image"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": null,
+									"description": "上傳頭貼時，type帶入avatar",
+									"disabled": true
+								}
 							]
 						}
 					},
